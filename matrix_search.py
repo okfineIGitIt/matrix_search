@@ -10,35 +10,6 @@
 # • The first number of each row is larger than the last number of the preceding row.
 # 5. You may use any programming language and unit testing framework of your choice.
 
-import timeit
-
-test_mat_notmat = "asldjasd"
-test_mat_2_mat1D = [1, 2, 3]
-test_mat_3_mat2D_no_elements = [[]]
-test_mat_4_norm = [
-  [1, 2, 3]
-]
-test_mat_5_norm = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9]
-]
-
-test_mat_6_norm = [
-  [1, 1, 1],
-  [2, 2, 2]
-]
-
-test_mat_6_norm = [
-  [1, 1, 1],
-  [2, 2, 2],
-  [3, 3, 3]
-]
-
-test_mat_7_one_element = [
-  [1]
-]
-
 def search_row(row, val):
   startIdx = 0
   endIdx = len(row) - 1
@@ -63,42 +34,16 @@ def search_matrix(mat, searchVal):
   int searchVal: value to search for in list
   """
   # check matrix
-  if (not isinstance(mat, list)) or (len(mat) <= 0) or (not isinstance(mat[0], list)) or (len(mat[0]) <= 0):
-    return False
-
-  # sorted list search with extra steps...but maybe easier?
-  # mat = [
-  #   [a1, a2, a3, a4, ...],
-  #   [b1, b2, b3, b4, ...],
-  #   ...
-  # ]
+  # if (not isinstance(mat, list)) or (len(mat) <= 0) or (not isinstance(mat[0], list)) or (len(mat[0]) <= 0):
+  #   return False
 
   # we know
   # 1) each row is sorted in ascending order
   # 2) first number in each row is larger than the last number of the preceding row
 
-  # meaning, if the first number in the row larger than the target value, the target CANNOT be in that row.
-  # If the first number of the preceding row is smaller than the target, the target MIGHT BE be in that row.
+  # meaning, if the last number in the row is larger (or equal to) the target value, the target must be in that row.
   for row in mat:
     if row[-1] >= searchVal: # value has to be in that row
       return search_row(row, searchVal)
   
   return False
-
-if __name__ == "__main__":
-  test_list = [
-    [test_mat_notmat, 2, False],
-    [test_mat_2_mat1D, 2, False],
-    [test_mat_3_mat2D_no_elements, 7, False],
-    [test_mat_4_norm, 0, False],
-    [test_mat_4_norm, 1, True],
-    [test_mat_7_one_element, 1, True],
-    [test_mat_7_one_element, 2, False]
-  ]
-
-  for test_mat, test_val, expectedResult in test_list:
-    assert(search_matrix(test_mat, test_val) == expectedResult)
-
-  print("All tests passed!")
-
-  
