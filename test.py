@@ -30,7 +30,7 @@ test_mat_7_one_element = [
 ]
 
 if __name__ == "__main__":
-  # [matrix to test, searchValue, expected result]
+  # [test name, matrix to test, searchValue, expected result]
   test_list = [
     ["Not a matrix", test_mat_notmat, 2, False],
     ["1D", test_mat_2_mat1D, 2, False],
