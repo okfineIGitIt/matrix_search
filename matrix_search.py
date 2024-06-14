@@ -15,14 +15,15 @@ def search_row(row, val):
   endIdx = len(row) - 1
 
   # Since it's ascending order we can do a bisecting sort of search, should be reduce search time to n/2
-  while (startIdx != endIdx):
-    if row[startIdx] >= val:
-      endIdx = startIdx + int((endIdx - startIdx) / 2)
+  while (startIdx <= endIdx):
+    temp_idx = startIdx + int((endIdx - startIdx) / 2)
+    if row[temp_idx] == val:
+      return True
+    
+    if row[temp_idx] < val:
+      startIdx = temp_idx + 1
     else:
-      startIdx = endIdx - int((endIdx - startIdx) / 2)
-
-  if row[startIdx] == val:
-    return True
+      endIdx = temp_idx - 1
   
   return False
   
@@ -34,16 +35,28 @@ def search_matrix(mat, searchVal):
   int searchVal: value to search for in list
   """
   # check matrix
-  # if (not isinstance(mat, list)) or (len(mat) <= 0) or (not isinstance(mat[0], list)) or (len(mat[0]) <= 0):
-  #   return False
+  if (not isinstance(mat, list)) or (len(mat) <= 0) or (not isinstance(mat[0], list)) or (len(mat[0]) <= 0):
+    return False
 
   # we know
   # 1) each row is sorted in ascending order
   # 2) first number in each row is larger than the last number of the preceding row
 
   # meaning, if the last number in the row is larger (or equal to) the target value, the target must be in that row.
-  for row in mat:
-    if row[-1] >= searchVal: # value has to be in that row
-      return search_row(row, searchVal)
+  # Can do binary search here too, BUT end index calc is different since even if mid is larger than value,
+  # the value can still be in the array
+  startIdx = 0
+  endIdx = len(mat) - 1
+
+  while (startIdx != endIdx):
+    temp_idx = startIdx + int((endIdx - startIdx) / 2)
+    if mat[temp_idx][-1] == searchVal:
+      return True
+    
+    if mat[temp_idx][-1] < searchVal:
+      startIdx = temp_idx + 1
+    else:
+      endIdx = temp_idx
   
-  return False
+  return search_row(mat[startIdx], searchVal)
+  
