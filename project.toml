@@ -2,10 +2,7 @@
 requires-python = ">=3.7"
 
 authors = [
-  {name = "", email = "pradyun@example.com"},
+  {name = "Rehann", email = "rehannj@gmail.com"}
 ]
-maintainers = [
-  {name = "Brett Cannon", email = "brett@example.com"}
-]
-description = "Lovely Spam! Wonderful Spam!"
-readme = "README.txt"
+description = "Matrix search algorithm"
+readme = "README.md"
