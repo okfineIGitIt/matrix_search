@@ -5,7 +5,7 @@ import matrix_search
 test_mat_notmat = "asldjasd"
 test_mat_2_mat1D = [1, 2, 3]
 test_mat_3_mat2D_no_elements = [[]]
-test_mat_4_norm = [
+test_mat_4_mat1D_norm = [
   [1, 2, 3]
 ]
 test_mat_5_norm = [
@@ -45,8 +45,8 @@ if __name__ == "__main__":
     ["Not a matrix", test_mat_notmat, 2, False],
     ["1D", test_mat_2_mat1D, 2, False],
     ["2D no elements", test_mat_3_mat2D_no_elements, 7, False],
-    ["Normal matrix search val absent", test_mat_4_norm, 0, False],
-    ["Normal matrix search val present", test_mat_4_norm, 1, True],
+    ["Normal matrix search val absent", test_mat_4_mat1D_norm, 0, False],
+    ["Normal matrix search val present", test_mat_4_mat1D_norm, 1, True],
     ["Normal matrix search val present", test_mat_5_norm, 5, True],
     ["Normal matrix row is one element", test_mat_6_norm, 2, True],
     ["2D one element (exists)", test_mat_7_one_element, 1, True],
